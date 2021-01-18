@@ -1,9 +1,12 @@
+# -- coding: utf-8 --
+
+from get_arguments import getArgs
+tab = getArgs()
 import time
 start_time = time.time()
-tab = [98, 22, 23, 32, 2, 74, 63, 70]
 comp = 0
 ite = 0
-print ("Série :", tab)
+print "Série :", tab
 for i in range(len(tab)):
     min = i
     for j in range(i+1, len(tab)):
@@ -14,7 +17,7 @@ for i in range(len(tab)):
     tab[i] = tab[min]
     tab[min] = tmp
     comp = comp + 1
-print ("Résultat :", tab)
-print ("Nombre de comparaisons :", comp)
-print ("Nombre d'itérations :", ite)
-print("Temps (sec) : ", "{:.2f}".format(time.time() - start_time))
+print "Résultat :", tab
+print "Nombre de comparaisons :", comp
+print "Nombre d'itérations :", ite
+print "Temps (sec) : ", "{:.2f}".format(time.time() - start_time)

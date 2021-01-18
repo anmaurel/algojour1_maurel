@@ -1,3 +1,10 @@
+# -- coding: utf-8 --
+from get_arguments import getArgs
+import datetime
+
+array = getArgs()
+begin_time = datetime.datetime.now()
+
 def merge_sort(array):
 
     if len(array) > 1:
@@ -36,6 +43,8 @@ def merge_sort(array):
             sorted_index = sorted_index + 1
 
 
-array = [95, 68, 10, 57, 20, 98, 42, 35, 85, 61]
+print("Série", array, sep=" : ")
 merge_sort(array)
-print(array)
+print("Résultat :", array, sep=" : ")
+print("Nombre de comparaisons :", '0', sep=" : ")
+print("Temps (sec) : ", datetime.datetime.now() - begin_time, sep=" : ")

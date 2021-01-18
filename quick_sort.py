@@ -1,3 +1,10 @@
+# -- coding: utf-8 --
+from get_arguments import getArgs
+import datetime
+
+array = getArgs()
+begin_time = datetime.datetime.now()
+
 def quick_sort(array, low, high):
     
     if low < high:
@@ -18,6 +25,9 @@ def partition(array, low, high):
 
     return i + 1
 
-array = [95, 6.8, 10, 57, -20, 9, 42, 35, 85, 61]
+
+print("Série", array, sep=" : ")
 quick_sort(array, 0, len(array) - 1)
-print(array)
+print("Résultat :", array, sep=" : ")
+print("Nombre de comparaisons :", '0', sep=" : ")
+print("Temps (sec) : ", datetime.datetime.now() - begin_time, sep=" : ")

@@ -7,16 +7,16 @@ def getArgs():
         raise ValueError("No arguments given")
     elif len(arg) == 2:
         listArguments = arg[1].replace(" ", "").replace(",", ".").split(";")
-        listInt = []
+        listFloat = []
         for i in range(len(listArguments)):
-            isInt = False
+            isFloat = False
             try:
                 val = float(listArguments[i])
-                isInt = True
+                isFloat = True
             except ValueError:
                 raise ValueError(listArguments[i], 'is not a number.') 
-            if isInt:
-                listInt.append(val)
-        return listInt
+            if isFloat:
+                listFloat.append(val)
+        return listFloat
     else:
         raise ValueError('Invalid argument. Example of valid argument: "26;89;-3"')

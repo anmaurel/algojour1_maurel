@@ -19,4 +19,4 @@ def getArgs():
                 listInt.append(val)
         return listInt
     else:
-        raise ValueError('Ivalid argument. Exemple of valid argument: "26;89;-3"')
+        raise ValueError('Invalid argument. Example of valid argument: "26;89;-3"')

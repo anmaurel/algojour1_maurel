@@ -7,6 +7,7 @@ array = getArgs()
 begin_time = time.time()
 
 def merge_sort(array):
+    nb_comparison = 0
 
     if len(array) > 1:
 
@@ -25,24 +26,30 @@ def merge_sort(array):
 
             if left_copy[left_copy_index] <= right_copy[right_copy_index]:
                 array[sorted_index] = left_copy[left_copy_index]
+                nb_comparison += 1
                 left_copy_index = left_copy_index + 1
 
             else:
                 array[sorted_index] = right_copy[right_copy_index]
+                nb_comparison += 1
                 right_copy_index = right_copy_index + 1
 
             sorted_index = sorted_index + 1
 
         while left_copy_index < len(left_copy):
             array[sorted_index] = left_copy[left_copy_index]
+            nb_comparison += 1
             left_copy_index = left_copy_index + 1
             sorted_index = sorted_index + 1
 
         while right_copy_index < len(right_copy):
             array[sorted_index] = right_copy[right_copy_index]
+            nb_comparison += 1
             right_copy_index = right_copy_index + 1
             sorted_index = sorted_index + 1
 
+    return [nb_comparison]
 
-merge_sort(array)
-printProperties(getArgs(), array, None, None, (time.time() - begin_time))
+
+result = merge_sort(array)
+printProperties(getArgs(), array, result[0], None, (time.time() - begin_time))

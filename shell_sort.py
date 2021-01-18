@@ -25,6 +25,7 @@ def shell_sort(array, length):
                 nb_iteration += 1
 
                 array[val] = array[val - interval]
+                nb_comparison += 1
                 val -= interval
 
             array[val] = temp

@@ -45,6 +45,6 @@ def merge_sort(array):
 
 print("Série", array, sep=" : ")
 merge_sort(array)
-print("Résultat :", array, sep=" : ")
-print("Nombre de comparaisons :", '0', sep=" : ")
-print("Temps (sec) : ", datetime.datetime.now() - begin_time, sep=" : ")
+print("Résultat", array, sep=" : ")
+print("Nombre de comparaisons", '0', sep=" : ")
+print("Temps (sec)", datetime.datetime.now() - begin_time, sep=" : ")

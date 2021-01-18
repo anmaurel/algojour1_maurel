@@ -12,11 +12,11 @@ for i in range(len(tab)):
     for j in range(i+1, len(tab)):
         if tab[min] > tab[j]:
             min = j
-            ite = ite + 1
+            ite += 1
     tmp = tab[i]
     tab[i] = tab[min]
     tab[min] = tmp
-    comp = comp + 1
+    comp += 1
 print "Résultat :", tab
 print "Nombre de comparaisons :", comp
 print "Nombre d'itérations :", ite

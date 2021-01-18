@@ -35,6 +35,7 @@ def merge_sort(array):
             right_copy_index = right_copy_index + 1
             sorted_index = sorted_index + 1
 
+
 array = [95, 68, 10, 57, 20, 98, 42, 35, 85, 61]
 merge_sort(array)
 print(array)

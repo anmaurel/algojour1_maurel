@@ -20,3 +20,5 @@ Le "shell sort" est un algorithme qui compare les éléments les plus éloignés
 ### Comb
 Le "comb sort" est un algorithme assez similaire au "bubble sort" sauf que lui utilise un gap tout le temps supérieur à 1. Dans notre cas on prend le nombre total d'éléments puis on le divise par 1.3, et ce jusqu'à avoir un gap de 1.
 
+## Bilan
+Le "quick sort" semble être le meilleur algorithme de tri parmis ces sept là car il permet de faire des opérations seulement quand cela est nécessaire et ainsi gagner du temps d'éxécution par rapport aux autres algorithmes.

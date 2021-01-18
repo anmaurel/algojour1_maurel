@@ -1,9 +1,9 @@
 # -- coding: utf-8 --
 from get_arguments import getArgs
-import datetime
+import time
 
 array = getArgs()
-begin_time = datetime.datetime.now()
+begin_time = time.time()
 
 def merge_sort(array):
 
@@ -42,9 +42,11 @@ def merge_sort(array):
             right_copy_index = right_copy_index + 1
             sorted_index = sorted_index + 1
 
+    return [nb_comparison]
+
 
 print("Série", array, sep=" : ")
 merge_sort(array)
 print("Résultat", array, sep=" : ")
-print("Nombre de comparaisons", '0', sep=" : ")
-print("Temps (sec)", datetime.datetime.now() - begin_time, sep=" : ")
+print("Nombre de comparaisons", merge_sort(array)[0], sep=" : ")
+print("Temps (sec)", time.time() - begin_time, sep=" : ")

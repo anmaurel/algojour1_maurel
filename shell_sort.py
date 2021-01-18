@@ -27,16 +27,16 @@ def shell_sort(array, length):
                 val -= interval
 
             array[val] = temp
+            nb_comparison += 1
 
         interval //= 2
-        nb_comparison += 1
     
     return [nb_comparison, nb_iteration]
 
 
 print("Série", array, sep=" : ")
-shell_sort(array, len(array))
+result = shell_sort(array, len(array))
 print("Résultat", array, sep=" : ")
-print("Nombre de comparaison", shell_sort(array, len(array))[0], sep=" : ")
-print("Nombre d'itération", shell_sort(array, len(array))[1], sep=" : ")
+print("Nombre de comparaison", result[0], sep=" : ")
+print("Nombre d'itération", result[1], sep=" : ")
 print("Temps (sec)", time.time() - begin_time, sep=" : ")

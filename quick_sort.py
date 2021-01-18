@@ -25,6 +25,6 @@ def partition(array, low, high):
     array[i + 1], array[high] = array[high], array[i + 1]
 
     return i + 1
-
+  
 quick_sort(array, 0, len(array) - 1)
 printProperties(getArgs(), array, None, None, (time.time() - begin_time))

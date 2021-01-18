@@ -1,5 +1,6 @@
 # -- coding: utf-8 --
 from get_arguments import getArgs
+from print_properties import printProperties
 import time
 
 array = getArgs()
@@ -34,9 +35,5 @@ def shell_sort(array, length):
     return [nb_comparison, nb_iteration]
 
 
-print("Série", array, sep=" : ")
 result = shell_sort(array, len(array))
-print("Résultat", array, sep=" : ")
-print("Nombre de comparaison", result[0], sep=" : ")
-print("Nombre d'itération", result[1], sep=" : ")
-print("Temps (sec)", time.time() - begin_time, sep=" : ")
+printProperties(getArgs(), array, result[0], result[1], (time.time() - begin_time))

@@ -1,5 +1,6 @@
 # -- coding: utf-8 --
 from get_arguments import getArgs
+from print_properties import printProperties
 import time
 
 array = getArgs()
@@ -42,11 +43,6 @@ def merge_sort(array):
             right_copy_index = right_copy_index + 1
             sorted_index = sorted_index + 1
 
-    return [nb_comparison]
 
-
-print("Série", array, sep=" : ")
 merge_sort(array)
-print("Résultat", array, sep=" : ")
-print("Nombre de comparaisons", merge_sort(array)[0], sep=" : ")
-print("Temps (sec)", time.time() - begin_time, sep=" : ")
+printProperties(getArgs(), array, None, None, (time.time() - begin_time))

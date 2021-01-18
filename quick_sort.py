@@ -1,5 +1,6 @@
 # -- coding: utf-8 --
 from get_arguments import getArgs
+from print_properties import printProperties
 import time
 
 array = getArgs()
@@ -25,9 +26,6 @@ def partition(array, low, high):
 
     return i + 1
 
-
-print("Série", array, sep=" : ")
+  
 quick_sort(array, 0, len(array) - 1)
-print("Résultat", array, sep=" : ")
-print("Nombre de comparaisons", '0', sep=" : ")
-print("Temps (sec)", time.time() - begin_time, sep=" : ")
+printProperties(getArgs(), array, None, None, (time.time() - begin_time))

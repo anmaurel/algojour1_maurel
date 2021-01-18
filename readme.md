@@ -1,6 +1,6 @@
 ## Group
 - Alexandre Lascaux
-- Alexandres Haas
+- Alexandre Haas
 - Antoine Maurel
 
 ## Sorts

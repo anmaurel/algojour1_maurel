@@ -6,7 +6,7 @@ import time
 start_time = time.time()
 comp = 0
 ite = 0
-print "Série :", tab
+print("Série", tab, sep=" : ")
 for i in range(len(tab)):
     min = i
     for j in range(i+1, len(tab)):
@@ -17,7 +17,7 @@ for i in range(len(tab)):
     tab[i] = tab[min]
     tab[min] = tmp
     comp += 1
-print "Résultat :", tab
-print "Nombre de comparaisons :", comp
-print "Nombre d'itérations :", ite
-print "Temps (sec) : ", "{:.2f}".format(time.time() - start_time)
+print("Résultat", tab, sep=" : ") 
+print("Nombre de comparaisons", comp, sep=" : ")
+print("Nombre d'itérations", ite, sep=" : ")
+print("Temps (sec)", "{:.2f}".format(time.time() - start_time), sep=" : ")

@@ -6,12 +6,12 @@ def getArgs():
     if len(arg) == 1:
         raise ValueError("No arguments given")
     elif len(arg) == 2:
-        listArguments = arg[1].replace(" ", "").split(";")
+        listArguments = arg[1].replace(" ", "").replace(",", ".").split(";")
         listInt = []
         for i in range(len(listArguments)):
             isInt = False
             try:
-                val = int(listArguments[i])
+                val = float(listArguments[i])
                 isInt = True
             except ValueError:
                 raise ValueError(listArguments[i], 'is not a number.') 

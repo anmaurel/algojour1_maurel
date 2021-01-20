@@ -2,6 +2,7 @@ from hashlib import sha256
 from datetime import datetime
 from tkinter import *
 from flask import Flask
+from flask_cors import CORS, cross_origin
 import json
 
 """
@@ -30,7 +31,7 @@ class Blockchain:
     def __init__(self):
         self.blocks = []
         self.add_first_block()
-    
+
     def get_blocks(self):
         blocks = {}
         blocks['block'] = []
@@ -50,8 +51,7 @@ class Blockchain:
  
     def add_first_block(self):
         first_block = Block(0, '0', datetime.now(), 'Genesis block', '0')
-        self.correct_hash(first_block)
-        self.blocks.append(first_block)
+        self.add_block(first_block)
 
     def new_block(self, data):
         new_block = Block(
@@ -64,12 +64,26 @@ class Blockchain:
 
         return new_block
 
+    def format_data(self, block):
+        data = {
+            'index' : block.index,
+            'previous hash' : block.previous_hash,
+            'timestamp' : block.timestamp,
+            'data' : block.data,
+            'hash' : block.hash,
+            'nonce' : block.nonce,
+        }
+
+        return data
+
     def add_block(self, block):
         self.correct_hash(block)
         self.blocks.append(block)
+        block_formated = self.format_data(block)
 
-        with open('blocks.json', 'w') as push:
-            json.dump(push)
+        data = json.dumps(block_formated, indent = 4, default = str, ensure_ascii=False)
+        with open('blocks.json', 'a') as file:
+            file.write(data)
 
     def correct_hash(self, block):
         exec_hash = block.do_hash()
@@ -80,24 +94,9 @@ class Blockchain:
             exec_hash = block.do_hash()
 
         block.hash = exec_hash
-    
-    def submit(): 
-        input_block = input.get() 
-        print("The data is : " + input_block) 
 
 bchain = Blockchain()
 
-
-"""
-API Flask
-"""
-# app = Flask(__name__)
-
-# @app.route('/', methods=['GET'])
-# def get_all_blocks():
-#     return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
-
-# app.run(debug = True, port = 5000)
 
 """
 User Interface
@@ -105,39 +104,68 @@ User Interface
 ui = Tk()
 
 ui.title('Blockchain IIM')
-ui.geometry("600x600+20+20")
+ui.geometry("1200x600+20+20")
 
 label = Label(ui, text="Nom de block :")
 label.pack()
-input = Entry(ui) 
-input.pack()
-input.focus_set()
 
-def return_blocks():
+data = StringVar()
+
+input = Entry(ui, textvariable = data)
+input.pack()
+
+def create():
     block = bchain.new_block(input.get())
     bchain.add_block(block)
 
-    results.config(text = format_results())
+    data = bchain.format_data(block)
+
     input.delete(0,END)
+    list.insert(END, data)
+ 
+# def delete_all():
+#     with open('blockchain/blocks.json', 'r') as data_file:
+#         data = json.load(data_file)
 
-def format_results():
-    blocks = []
-    for block in bchain.get_blocks():
-        blocks.append([
-            "index : " + str(block.index) + "",
-            block.previous_hash,
-            block.timestamp,
-            block.data,
-            block.hash,
-            block.nonce,
-        ])
+#     # for element in data:
+#     #     del element.pop()
 
-    return blocks
+#     list.delete(0, END)
+ 
+# def delete():
+# 	list.delete(ANCHOR)
 
-button = Button(ui, text = "Créer", width = 10, command = return_blocks)
+button = Button(ui, text="Créer", width = 10 , command = create)
 button.pack()
 
-results = Label(ui, height = 100, width = 600, wraplength = 600)
-results.pack()
+# btn_delete_all = Button(text = "Supprimer tout", command = delete_all)
+# btn_delete_all.pack()
+
+# btn_delete = Button(text = "Supprimer par sélection", command = delete)
+# btn_delete.pack()
+
+list = Listbox(ui, width = 600)
+list.pack()
 
 ui.mainloop()
+
+
+"""
+API Flask
+"""
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+@app.route('/', methods=['GET'])
+def get_all_blocks():
+    return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
+
+# @app.route('/add', methods=['POST'])
+# def add_block():
+#     data = request.form.get('data')
+#     block = bchain.new_block(data)
+#     bchain.add_block(block)
+#     return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
+
+app.run(debug = True, port = 4000)

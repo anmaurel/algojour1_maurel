@@ -11,10 +11,15 @@ class Home extends React.PureComponent<{}, IOwnState> {
     blocChain: [] as BlocChain,
   };
   componentDidMount() {
-    axios.get(`http://127.0.0.1:4000/`).then((res) => {
-      const blocChain = res.data;
-      this.setState({ blocChain: blocChain.block });
-    });
+    axios
+      .get(`http://127.0.0.1:4000/`)
+      .then((res) => {
+        const blocChain = res.data;
+        this.setState({ blocChain: blocChain.block });
+      })
+      .catch((err) => {
+        console.log("Error fetch api :", err);
+      });
   }
   render() {
     return (

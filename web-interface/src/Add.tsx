@@ -20,8 +20,7 @@ class Add extends React.PureComponent<{}, IOwnState> {
     input = input.trim().replace(/\s\s+/g, " ");
     if (input) {
       axios.post(`http://127.0.0.1:4000/add`, { input }).then((res) => {
-        console.log(res);
-        console.log(res.data);
+        this.setState({ inputVal: "" });
       });
     }
   };

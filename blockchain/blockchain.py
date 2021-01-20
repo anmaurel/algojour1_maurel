@@ -1,7 +1,7 @@
 from hashlib import sha256
 from datetime import datetime
 from tkinter import *
-from flask import Flask
+from flask import Flask, request
 import json
 
 """
@@ -84,6 +84,24 @@ class Blockchain:
     def submit(): 
         input_block = input.get() 
         print("The data is : " + input_block) 
+    
+    def delete_block(index_block):
+        if index_block in self.blocks:
+            self.blocks.remove(index_block)
+        
+        if index_block < len(self.blocks):
+            for block in self.blocks:
+                for b in range(index_block, len(self.blocks)):
+                    self.blocks.remove(b)
+
+    def delete_last_block():
+        self.blocks.pop()
+
+    def checkBlock(index_block):
+        return self.blocks[index_block]
+
+
+
 
 bchain = Blockchain()
 
@@ -91,13 +109,22 @@ bchain = Blockchain()
 """
 API Flask
 """
-# app = Flask(__name__)
+app = Flask(__name__)
 
-# @app.route('/', methods=['GET'])
-# def get_all_blocks():
-#     return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
+@app.route('/', methods=['GET'])
+def get_all_blocks():
+    return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
 
-# app.run(debug = True, port = 5000)
+@app.route('/add', methods=['POST'])
+def add_block():
+    data = request.form.get('data')
+    block = bchain.new_block(data)
+    bchain.add_block(block)
+    return json.dumps(bchain.get_blocks(), sort_keys = True, default = str, indent = 2)
+
+
+
+app.run(debug = True, port = 5000)
 
 """
 User Interface

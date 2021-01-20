@@ -61,7 +61,6 @@ class Blockchain:
         return self.blocks
     
 
-
 bchain = Blockchain(3)
 
 # block_n1 = bchain.new_block("Second Block")
